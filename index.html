@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>彭永乐 - 个人博客</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Ma+Shan+Zheng&display=swap');
+        
+        body {
+            font-family: 'Noto Sans SC', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+            background-image: url('data:image/svg+xml,%3Csvg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"%3E%3Cpath d="M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z" fill="%23e9ecef" fill-opacity="0.4" fill-rule="evenodd"/%3E%3C/svg%3E');
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* 导航栏 */
+        nav {
+            background-color: rgba(255, 255, 255, 0.95);
+            color: #333;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #e63946;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: #333;
+            margin: 2px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            position: relative;
+        }
+        
+        .nav-links a:hover {
+            color: #e63946;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: #e63946;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* 头部 */
+        header {
+            background: linear-gradient(135deg, #f1faee 0%, #a8dadc 50%, #457b9d 100%);
+            color: #1d3557;
+            padding: 6rem 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%231d3557" fill-opacity="0.05"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');
+            z-index: 0;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-family: 'Ma Shan Zheng', cursive;
+            color: #e63946;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-content p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-weight: 500;
+        }
+        
+        /* 个人简介 */
+        .profile {
+            padding: 6rem 0;
+            background-color: white;
+            position: relative;
+        }
+        
+        .profile::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #e63946, #457b9d, #1d3557);
+        }
+        
+        .profile-container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            background-color: #f8f9fa;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .profile-img {
+            flex: 1;
+            max-width: 300px;
+            position: relative;
+        }
+        
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border: 3px solid #e63946;
+            border-radius: 50%;
+            z-index: -1;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1.05);
+                opacity: 0;
+            }
+        }
+        
+        .profile-img img {
+            width: 100%;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .profile-img img:hover {
+            transform: scale(1.05);
+        }
+        
+        .profile-info {
+            flex: 2;
+        }
+        
+        .profile-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 1.5rem;
+            color: #1d3557;
+            font-family: 'Ma Shan Zheng', cursive;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .profile-info h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100px;
+            height: 3px;
+            background-color: #e63946;
+        }
+        
+        .profile-info p {
+            margin-bottom: 1.2rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #495057;
+        }
+        
+        /* 事迹展示 */
+        .achievements {
+            padding: 6rem 0;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+        
+        .achievements::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #1d3557, #457b9d, #e63946);
+        }
+        
+        .achievements h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 4rem;
+            color: #1d3557;
+            font-family: 'Ma Shan Zheng', cursive;
+            position: relative;
+        }
+        
+        .achievements h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background-color: #e63946;
+        }
+        
+        .achievement-item {
+            background-color: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .achievement-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-color: #e63946;
+        }
+        
+        .achievement-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .achievement-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: #1d3557;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+        }
+        
+        .achievement-item h3::before {
+            content: '';
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            background-color: #e63946;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .achievement-item p {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            color: #495057;
+        }
+        
+        .achievement-item ul {
+            margin-left: 2rem;
+            margin-bottom: 1.2rem;
+        }
+        
+        .achievement-item li {
+            margin-bottom: 0.5rem;
+            color: #495057;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .image-grid img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .image-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 终章寄语 */
+        .conclusion {
+            padding: 6rem 0;
+            background-color: #1d3557;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+        
+        .conclusion::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #e63946, #457b9d, #f1faee);
+        }
+        
+        .conclusion h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: white;
+            font-family: 'Ma Shan Zheng', cursive;
+            position: relative;
+        }
+        
+        .conclusion h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background-color: #e63946;
+        }
+        
+        .conclusion p {
+            font-size: 1.3rem;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 2;
+            font-weight: 300;
+            color: #f1faee;
+            font-style: italic;
+        }
+        
+        .conclusion .image-grid {
+            margin-top: 3rem;
+        }
+        
+        .conclusion .image-grid img {
+            border: 3px solid white;
+        }
+        
+        /* 联系方式 */
+        .contact {
+            padding: 6rem 0;
+            background-color: #f1faee;
+            color: #1d3557;
+            text-align: center;
+            position: relative;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: linear-gradient(90deg, #f1faee, #457b9d, #e63946);
+        }
+        
+        .contact h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1d3557;
+            font-family: 'Ma Shan Zheng', cursive;
+            position: relative;
+        }
+        
+        .contact h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background-color: #e63946;
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-item {
+            text-align: center;
+            background-color: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-width: 250px;
+        }
+        
+        .contact-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .contact-item p {
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+            color: #495057;
+        }
+        
+        .contact-item p:first-child {
+            font-weight: 700;
+            color: #1d3557;
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                padding: 1rem 0;
+                display: none;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+            
+            .nav-links a {
+                color: #333;
+            }
+            
+            .profile-container {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+                padding: 1.5rem;
+            }
+            
+            .profile-img {
+                max-width: 200px;
+            }
+            
+            .header-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .header-content p {
+                font-size: 1.1rem;
+            }
+            
+            .profile-info h2 {
+                font-size: 1.8rem;
+            }
+            
+            .profile-info h2::after {
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            
+            .profile-info p {
+                font-size: 1rem;
+            }
+            
+            .achievements h2 {
+                font-size: 2rem;
+            }
+            
+            .achievement-item {
+                padding: 1.5rem;
+            }
+            
+            .achievement-item h3 {
+                font-size: 1.5rem;
+            }
+            
+            .conclusion h2 {
+                font-size: 2rem;
+            }
+            
+            .conclusion p {
+                font-size: 1.1rem;
+            }
+            
+            .contact h2 {
+                font-size: 2rem;
+            }
+            
+            .contact-info {
+                gap: 2rem;
+            }
+            
+            .contact-item {
+                min-width: 200px;
+                padding: 1.5rem;
+            }
+        }
+        
+        /* 图片展示 */
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .image-grid img {
+            width: 100%;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container nav-container">
+            <div class="logo">彭永乐</div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#profile">个人简介</a></li>
+                <li><a href="#achievements">事迹展示</a></li>
+                <li><a href="#conclusion">终章寄语</a></li>
+                <li><a href="#contact">联系方式</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <script>
+        // 移动端菜单切换
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // 关闭移动端菜单
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+    </script>
+    
+    <!-- 头部 -->
+    <header id="home">
+        <div class="container header-content">
+            <h1>梦想的力量</h1>
+            <p>浩渺行无极，扬帆但信风</p>
+        </div>
+    </header>
+    
+    <!-- 个人简介 -->
+    <section class="profile" id="profile">
+        <div class="container profile-container">
+            <div class="profile-img">
+                <img src="assets/国奖推送/image001.jpg" alt="彭永乐">
+            </div>
+            <div class="profile-info">
+                <h2>个人简介</h2>
+                <p>彭永乐，中共预备党员，杭州电子科技大学数字媒体技术专业2022级学生。平均学分绩点专业第一，CET-6 589。现任校十佳优良学风班班长，曾任学院党员先锋队队长，新生辅导员助理。</p>
+                <p>曾获2024年度国家奖学金、2023年度浙江省政府奖学金、华为“智能基座”奖学金和未央奖学金（高数线代双百）特别表彰等奖学金荣誉。曾获教育部-华为“智能基座”未来之星、校优秀学生干部、亚运优秀志愿者等称号。</p>
+                <p>曾获2025年第二届高校ICT产教融合创新大赛全国季军、一等奖（人工智能赛道第一名），2023年支付宝小程序开发者大赛最佳人气奖（全国仅5项），2023年国家级大创立项，2024年省级新苗立项，累计荣获国家级省级奖项十余项。国家级发明专利（公布阶段）1项，软件著作权1项。</p>
+                <p>曾基于科研项目作为主要章节负责人参与浙大《基于人工智能的国画传承与创新》通识课程筹备，已于2024-2025-1学期上线浙江大学教务系统选课平台。</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 事迹展示 -->
+    <section class="achievements" id="achievements">
+        <div class="container">
+            <h2>个人事迹</h2>
+            
+            <div class="achievement-item">
+                <h3>01 逆风启航：从末位到领航的蜕变</h3>
+                <p>作为三位一体普通类考生，2022年以专业末位高考成绩考入杭电的彭永乐，面对学业压力展现出惊人的韧劲。他从一开始就知道，杭电的保研名额少，数字媒体技术更甚。</p>
+                <p>自22年入学起，这份“执念”一直在延续。深知本校本专业百人仅1个名额的残酷，他把无数个期末备考的夜晚留给了6教的灯光。从大一死磕的薄弱数学，到图形学、数据结构、操作系统等硬核专业课，每学期都在“熬一熬就过去”的自我鼓励中，在否定与肯定的交替里，一步步向前。</p>
+                <p>他保持平均学分绩点专业第一，斩获30余门课程满绩，也取得计算机二级考试99分、英语六级589分的优异成绩，曾被评为教育部-华为“智能基座”未来之星。</p>
+                <div class="image-grid">
+                    <img src="assets/国奖推送/image002.jpg" alt="CET-6">
+                    <img src="assets/国奖推送/image003.png" alt="计算机二级">
+                    <img src="assets/国奖推送/image004.jpg" alt="支付宝小程序开发者大赛">
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>02 深耕科研：在数字沃土播撒文化种子</h3>
+                <p>大一起便加入HDVIS大数据可视化与人机协同智能实验室的彭永乐，将古画中的艺术密码转化为数字基因。为攻克古画知识图谱构建难题，团队需要有大量的古画标注数据集，但彼时项目因数据匮乏濒临停滞。</p>
+                <p>加入考古艺术图像可视化小组的彭永乐主动对接《中华珍宝馆》平台创始人李双涛先生，获取关键古画数据资源（CAOD数据库）授权，获得10975幅高清数字古画资源和对应的标签库，从而帮助团队开展后续的工作。</p>
+                <p>在导师周志光教授和学长学姐的指导下，他围绕古画知识图谱构建技术申请的国家发明专利已进入实质审查阶段；以第一作者身份完成的古画检索相关论文被ChinaCI 2025收录，并受邀在大会现场作成果展示。这个执着于"让文物活起来"的青年，正用数字技术架起古今对话的桥梁。</p>
+                <div class="image-grid">
+                    <img src="assets/国奖推送/image007.png" alt="李双涛邮件回复">
+                    <img src="assets/国奖推送/image008.jpg" alt="HDVIS">
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>03 知行合一：搭建知识转化的彩虹桥</h3>
+                <p>彭永乐始终践行"笃学力行，守正求新"的杭电校训。他依托科研项目成果，成功获得一项国家级大创立项和省级新苗立项《墨韵探源-古画基因库构建及应用》。</p>
+                <p>他依托课题组的平台，以章节负责人的身份参与浙江大学《基于人工智能的国画传承与创新》通识课程建设工作。他独立完成第三章《国画数据：类型、特征与解析》课程设计，与浙大陈为教授团队、艺术与考古图像数据实验室学者展开8次研讨，撰写课程讲稿与教学案例注释（累计1.2万字），整合故宫博物院、中华珍宝馆等机构的公开数据资源，设计并制作79页交互式PPT课件，包含18个国画案例分析（如《千里江山图》色彩解构、题跋文本语义分析）。</p>
+                <p>该课程已于2024-2025-1学期上线浙江大学教务系统选课平台。</p>
+                <div class="image-grid">
+                    <img src="assets/国奖推送/image010.jpg" alt="浙江大学教务系统选课平台">
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>04 服务先锋：党建引领下的青春担当</h3>
+                <p>作为学生党支部副书记和党员先锋队队长，他协助学院党委全年组织理论学习、廉政教育等活动44场，覆盖师生3000余人次。聚焦思想引领，协助策划习近平总书记重要讲话精神学习14次；连续三年助力学院“新生入党第一课”，创新“专题党课+红色朗诵”模式，覆盖学院900余名新生。</p>
+                <p>深化组织建设，协助开展党风廉政活动8次；协助组织党建与业务融合研讨9次，联动5家单位协助开展党建联建等活动6次。协助打造“毕业生党员最后一课”等学院心引力党建特色品牌活动，以“服务者”身份践行党员初心，获同学“有温度、有深度”的反馈。</p>
+                <p>此外，他也积极参与志愿服务，累计时长超过127小时。大二期间，他作为亚运志愿服务助理，为亚运会顺利举行贡献力量，并投稿参加“我和亚运的故事”征文比赛，作品《手中的牡丹花》获校优秀征文奖。</p>
+                <div class="image-grid">
+                    <img src="assets/国奖推送/image012.jpg" alt="组织开展毕业生党员最后一课活动">
+                    <img src="assets/国奖推送/image013.jpg" alt="作为亚运志愿者参与校跨文化交流活动">
+                    <img src="assets/国奖推送/image014.jpg" alt="作为亚运志愿服务助理">
+                    <img src="assets/国奖推送/image015.png" alt="'我和亚运的故事'优秀征文奖">
+                </div>
+            </div>
+            
+            <div class="achievement-item">
+                <h3>05 经验共享：从班助答疑到互联网赋能</h3>
+                <p>大二作为知心学长，大三担任班助期间，他曾收到过不计其数的咨询（课程备考/竞赛组队/论文写作等），发现60%问题存在共性。去年在帮助数媒专业学妹优化大创申报书时，意识到经验复用价值——这份最终获省级立项的申报书框架，后来成为账号「作业比赛文档超越版本」系列的首篇爆文。</p>
+                <p>他在小红书（@朕的碰碰车呢；小红书号738251406）持续分享大学成长经验，目前发布笔记涵盖：</p>
+                <ul>
+                    <li>竞赛实战：如《背景图片设置》（单篇阅读7.8w，收藏3k+）</li>
+                    <li>学术写作：论文排版技巧、AI公式编辑技巧</li>
+                    <li>学生工作：班长秘籍系列、好用工具分享</li>
+                </ul>
+                <p>欢迎关注交流，所有分享均基于个人真实经验提炼。他通过业余时间在小红书上分享竞赛心得与经验，累计创收5k+。</p>
+                <div class="image-grid">
+                    <img src="assets/国奖推送/35340662fd3ffaa964962cb1ca3f8319.jpg" alt="朕的碰碰车呢 小红书个人主页">
+                    <img src="assets/国奖推送/b92a60e9536d938797d51a9518966d3d.jpg" alt="朕的碰碰车呢 小红书笔记示例">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 终章寄语 -->
+    <section class="conclusion" id="conclusion">
+        <div class="container">
+            <h2>终章寄语</h2>
+            <p>生活本是藏满惊喜的莫比乌斯环，<br>
+            那些被咖啡渍晕染的演算纸终将化作翅膀，<br>
+            而我们都是自己故事里的哥伦布，<br>
+            既要扬帆破译知识的潮汐，<br>
+            也要在月光如水的夜晚，<br>
+            学会撷取属于平凡日子的隽永诗意。</p>
+            <div class="image-grid">
+                <img src="assets/国奖推送/image023.jpg" alt="HDVIS六一团建">
+                <img src="assets/国奖推送/image022.jpg" alt="HDVIS 六一团建">
+                <img src="assets/国奖推送/image019.jpg" alt="个人生活照--云南游">
+                <img src="assets/国奖推送/image018.jpg" alt="校十佳优良学风班班长">
+                <img src="assets/国奖推送/image020.jpg" alt="Bertram in Disney Land">
+            </div>
+        </div>
+    </section>
+    
+    <!-- 联系方式 -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>联系方式</h2>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>小红书：@朕的碰碰车呢</p>
+                    <p>小红书号：738251406</p>
+                </div>
+                <div class="contact-item">
+                    <p>个人主页：https://bertrammmm.github.io/Profile/</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
