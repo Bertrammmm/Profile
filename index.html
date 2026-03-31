@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
@@ -34,8 +34,8 @@
       <p class="hero__meta">杭州电子科技大学 · 数字媒体技术 · 2022 级</p>
     </div>
 
-    <main>
-      <section id="intro" aria-labelledby="intro-heading">
+    <main class="layout">
+      <section id="intro" class="content-section" aria-labelledby="intro-heading">
         <h2 id="intro-heading">个人简介</h2>
         <figure class="figure figure--hero">
           <img
@@ -68,7 +68,7 @@
         </figure>
       </section>
 
-      <section id="story" aria-labelledby="story-heading">
+      <section id="story" class="content-section" aria-labelledby="story-heading">
         <h2 id="story-heading">个人事迹</h2>
 
         <blockquote class="quote-block">
@@ -136,16 +136,18 @@
           />
           <figcaption>ChinaCI 2025 大会现场报告</figcaption>
         </figure>
-        <div class="grid-2">
-          <figure class="figure">
+        <figure class="figure figure--screenshot">
+          <div class="figure__frame">
             <img src="assets/国奖推送/image007.png" alt="李双涛邮件回复" loading="lazy" />
-            <figcaption>李双涛邮件回复</figcaption>
-          </figure>
-          <figure class="figure">
+          </div>
+          <figcaption>李双涛邮件回复</figcaption>
+        </figure>
+        <figure class="figure">
+          <div class="figure__frame figure__frame--soft">
             <img src="assets/国奖推送/image008.jpg" alt="HDVIS 实验室" loading="lazy" />
-            <figcaption>HDVIS</figcaption>
-          </figure>
-        </div>
+          </div>
+          <figcaption>HDVIS</figcaption>
+        </figure>
 
         <h3>03 知行合一：搭建知识转化的彩虹桥</h3>
         <p>
@@ -154,12 +156,14 @@
           页交互式 PPT 课件，包含 18 个国画案例分析（如《千里江山图》色彩解构、题跋文本语义分析）。该课程已于 2024-2025-1
           学期上线浙江大学教务系统选课平台。
         </p>
-        <figure class="figure">
-          <img
-            src="assets/国奖推送/image009.png"
-            alt="浙江大学教务系统选课平台"
-            loading="lazy"
-          />
+        <figure class="figure figure--screenshot">
+          <div class="figure__frame">
+            <img
+              src="assets/国奖推送/image009.png"
+              alt="浙江大学教务系统选课平台"
+              loading="lazy"
+            />
+          </div>
           <figcaption>浙江大学教务系统选课平台</figcaption>
         </figure>
 
@@ -284,7 +288,7 @@
         </div>
       </section>
 
-      <section id="contact" aria-labelledby="contact-heading">
+      <section id="contact" class="content-section content-section--contact" aria-labelledby="contact-heading">
         <h2 id="contact-heading">链接</h2>
         <div class="links-row">
           <a href="https://www.hdvis.net" target="_blank" rel="noopener noreferrer">HDVIS 实验室</a>
